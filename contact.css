@@ -1,0 +1,355 @@
+
+/* Shared styles across all pages */
+
+/* Body & Background */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #E0D8A8; /* soft gold/off-white */
+  background: #121212; /* dark charcoal */
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Solo Leveling background image with subtle overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2373990/capsule_616x353.jpg?t=1733119805") no-repeat center center;
+  background-size: cover;
+  opacity: 0.3;
+  filter: brightness(70%) saturate(130%);
+  z-index: -2;
+}
+
+/* Dark overlay to make text pop */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-color: rgba(18, 18, 18, 0.3);
+  z-index: -1;
+}
+
+/* Navigation */
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(25, 25, 25, 0.8);
+  border-bottom: 2px solid #D4AF37;
+  position: relative;
+}
+
+nav h1 {
+  font-size: 1.6rem;
+  color: #D4AF37;
+  font-weight: 700;
+  font-family: 'Oswald', sans-serif;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  padding: 0;
+}
+
+nav a {
+  color: #E0D8A8;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: color 0.25s ease;
+}
+
+nav a:hover {
+  color: #D4AF37;
+  text-shadow: 0 0 6px #D4AF37;
+}
+
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 20;
+    left: 1.5rem; /* ← align to the left */
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: #D4AF37;
+  transition: all 0.3s ease;
+  border-radius: 3px;
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+  
+  nav ul {
+    position: fixed;
+    flex-direction: column;
+    background: rgba(25, 25, 25, 0.95);
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 250px;
+    padding-top: 80px;
+    padding-left: 40px;
+    transition: right 0.3s ease;
+    z-index: 10;
+    align-items: flex-start;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    margin-top: 70px;
+  }
+  
+  nav ul.active {
+    right: 0;
+  }
+  
+  nav li {
+    margin: 10px 0;
+  }
+  
+  /* Hamburger animation */
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  
+  /* Overlay when menu is open */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 5;
+  }
+  
+  .overlay.active {
+    display: block;
+  }
+}
+
+/* Main Content */
+main {
+  max-width: 900px;
+  margin: 0 auto 3rem;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* Card style sections */
+.card {
+  background: rgba(40, 40, 40, 0.85);
+  border-left: 6px solid #D4AF37;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+  color: #E0D8A8;
+}
+
+.card h2 {
+  margin-top: 0;
+  color: #FFD700;
+  font-weight: 700;
+  font-size: 1.8rem;
+  font-family: 'Oswald', sans-serif;
+}
+
+.card ul {
+  padding-left: 1.2rem;
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: #d7c970;
+}
+
+/* Links in cards */
+.card a {
+  color: #D4AF37;
+  font-weight: 600;
+  text-decoration: none;
+  transition: text-shadow 0.3s ease;
+}
+
+.card a:hover {
+  text-shadow: 0 0 8px #D4AF37;
+}
+
+/* Page Header */
+.page-header {
+  text-align: center;
+  padding: 2rem;
+}
+
+.page-header h2 {
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.primary-btn {
+  background: #D4AF37;
+  color: #121212;
+}
+
+.primary-btn:hover {
+  background: #FFD700;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.5);
+}
+
+.secondary-btn {
+  background: rgba(212, 175, 55, 0.15);
+  color: #D4AF37;
+  border: 1px solid #D4AF37;
+}
+
+.secondary-btn:hover {
+  background: rgba(212, 175, 55, 0.25);
+  transform: translateY(-2px);
+}
+
+
+
+
+/* Styles specific to contact.html */
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+}
+
+.contact-info h3, .contact-form h3 {
+  color: #FFD700;
+  margin-top: 0;
+}
+
+.contact-item {
+  margin-bottom: 1rem;
+}
+
+.contact-label {
+  font-weight: 600;
+  color: #d7c970;
+  margin-right: 0.5rem;
+}
+
+.social-links {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.social-link {
+  padding: 0.5rem 1rem;
+  background: rgba(212, 175, 55, 0.1);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background: rgba(212, 175, 55, 0.2);
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-group input, .form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  background: rgba(18, 18, 18, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 4px;
+  color: #E0D8A8;
+  font-family: inherit;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+  outline: none;
+  border-color: #D4AF37;
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+}
+textarea {
+    resize: none;
+}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .contact-info {
+    text-align: center;
+  }
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem 0;
+  background: rgba(18, 18, 18, 0.85);
+  font-size: 0.9rem;
+  color: #b5a642;
+  border-top: 1px solid #D4AF37;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
